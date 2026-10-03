@@ -72,7 +72,7 @@ def scan_url(data: URLScanRequest, db: Session = Depends(get_db)):
         )
         
         completion = groq_client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
             messages=[{"role": "user", "content": prompt_content}],
             response_format={"type": "json_object"}
         )
@@ -138,7 +138,7 @@ async def scan_document(file: UploadFile = File(...), db: Session = Depends(get_
         )
         
         completion = groq_client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
             messages=[{"role": "user", "content": prompt_content}],
             response_format={"type": "json_object"}
         )
@@ -214,7 +214,7 @@ def scan_contact(data: ContactScanRequest, db: Session = Depends(get_db)):
         )
         
         completion = groq_client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
             messages=[{"role": "user", "content": prompt_content}],
             response_format={"type": "json_object"}
         )
