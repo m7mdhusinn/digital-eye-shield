@@ -159,8 +159,8 @@
     </footer>
 
     <!-- JavaScript للربط المباشر مع الـ Backend -->
-    <script>
-        const API_BASE = "http://127.0.0.1:8000/api/v1";
+   <script>
+        const API_BASE = "/api/v1";
 
         async function scanUrl() {
             const url = document.getElementById('urlInput').value.trim();
@@ -173,9 +173,9 @@
             }
 
             btn.disabled = true;
-            btn.innerText = "جاري الفحص والتحليل المحلي...";
+            btn.innerText = "جاري الفحص والتحليل السحابي...";
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = `<p class="text-cyan-400 animate-pulse">جاري فحص الرابط واستدعاء نموذج Llama 3...</p>`;
+            resultDiv.innerHTML = `<p class="text-cyan-400 animate-pulse">جاري فحص الرابط واستدعاء نموذج Llama 3 عبر السحاب...</p>`;
 
             try {
                 const response = await fetch(`${API_BASE}/scan-url`, {
@@ -219,7 +219,7 @@
             btn.disabled = true;
             btn.innerText = "جاري رفع وتحليل المستند...";
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = `<p class="text-cyan-400 animate-pulse">جاري فحص المستند وقراءته عبر الذكاء الاصطناعي المحلي...</p>`;
+            resultDiv.innerHTML = `<p class="text-cyan-400 animate-pulse">جاري فحص المستند وقراءته عبر الذكاء الاصطناعي السحابي...</p>`;
 
             try {
                 const response = await fetch(`${API_BASE}/scan-document`, {
@@ -245,6 +245,7 @@
                 btn.innerText = "تحليل المستند بالذكاء الاصطناعي";
             }
         }
+
         async function scanContact() {
             const contact = document.getElementById('contactInput').value.trim();
             const resultDiv = document.getElementById('contactResult');
@@ -258,7 +259,7 @@
             btn.disabled = true;
             btn.innerText = "جاري البحث في قاعدة البلاغات...";
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = `<p class="text-emerald-400 animate-pulse">جاري فحص الرقم محلياً...</p>`;
+            resultDiv.innerHTML = `<p class="text-emerald-400 animate-pulse">جاري فحص الرقم سحابياً...</p>`;
 
             try {
                 const response = await fetch(`${API_BASE}/scan-contact`, {
@@ -282,7 +283,7 @@
                     notesHtml = `<li>${data.analysis_notes || 'لا توجد ملاحظات مسجلة.'}</li>`;
                 }
 
-               resultDiv.innerHTML = `
+                resultDiv.innerHTML = `
                     <div class="flex justify-between items-center pb-2 border-b border-slate-800">
                         <span class="font-bold text-slate-200">المرجع: ${data.contact}</span>
                         <span class="px-2 py-0.5 rounded-md border text-[10px] font-bold ${badgeColor}">${data.status} (${data.risk_score}%)</span>
@@ -302,6 +303,7 @@
                 btn.innerText = "فحص الرقم/المعرف";
             }
         }
+
         async function blockContactNumber(contactVal) {
             if (!confirm(`هل أنت متأكد من رغبتك في حظر وإدراج المعرف (${contactVal}) ضمن قائمة الاحتيال المؤكد؟`)) return;
 
@@ -314,7 +316,7 @@
                 const data = await response.json();
                 if (response.ok) {
                     alert(data.message);
-                    scanContact(); // إعادة الفحص لتحديث الحالة إلى خطير جداً
+                    scanContact();
                 } else {
                     alert('فشل تنفيذ عملية الحظر.');
                 }
@@ -322,7 +324,7 @@
                 alert(`خطأ في الاتصال: ${error}`);
             }
         }
-        // دالة جلب وعرض السجلات مع دعم البحث الفوري
+
         async function loadHistory() {
             const searchTerm = document.getElementById('searchInput').value.trim();
             const tbody = document.getElementById('historyTableBody');
@@ -361,10 +363,10 @@
             }
         }
 
-        // استدعاء دالة التحميل تلقائياً عند فتح الصفحة
         window.onload = function() {
             loadHistory();
         };
+
         let isDashboardVisible = false;
 
         function toggleDashboard() {
@@ -379,7 +381,7 @@
                 searchContainer.classList.remove('hidden');
                 btn.innerText = "🔒 إخفاء السجلات والتحكم";
                 btn.className = "bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
-                loadHistory(); // تحميل البيانات فور إظهار اللوحة
+                loadHistory();
             } else {
                 content.classList.add('hidden');
                 searchContainer.classList.add('hidden');
