@@ -9,7 +9,7 @@ from database import engine, get_db
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from groq import Groq
-
+from fastapi.responses import HTMLResponse
 load_dotenv()
 
 # تهيئة عميل Groq باستخدام المفتاح السحابي
@@ -40,10 +40,10 @@ class ContactScanRequest(BaseModel):
 class BlockContactRequest(BaseModel):
     contact: str
 
-@app.get("/")
-def read_root():
-    return {"status": "active", "message": "Digital Eye (Cyber Shield AI) Cloud Engine is running successfully!"}
-
+@app.get("/", response_class=HTMLResponse)
+def read_frontend():
+    with open("index.html", "r", encoding="utf-8") as f:
+        return f.read()
 # 1. مسار فحص الروابط سحابياً عبر Groq
 @app.post("/api/v1/scan-url")
 def scan_url(data: URLScanRequest, db: Session = Depends(get_db)):
@@ -270,12 +270,7 @@ def get_scan_history(search: str = None, db: Session = Depends(get_db)):
     logs = query.order_by(models.ScanLog.created_at.desc()).limit(50).all()
     return logs
 
-from fastapi.responses import HTMLResponse
 
-@app.get("/", response_class=HTMLResponse)
-def read_frontend():
-    with open("index.html", "r", encoding="utf-8") as f:
-        return f.read()
 '''
 import os
 import json
