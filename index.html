@@ -369,26 +369,37 @@
 
         let isDashboardVisible = false;
 
-        function toggleDashboard() {
-            const content = document.getElementById('dashboardContent');
-            const searchContainer = document.getElementById('searchContainer');
-            const btn = document.getElementById('toggleDashboardBtn');
+    function toggleDashboard() {
+        const content = document.getElementById('dashboardContent');
+        const searchContainer = document.getElementById('searchContainer');
+        const btn = document.getElementById('toggleDashboardBtn');
 
-            isDashboardVisible = !isDashboardVisible;
-
-            if (isDashboardVisible) {
-                content.classList.remove('hidden');
-                searchContainer.classList.remove('hidden');
-                btn.innerText = "🔒 إخفاء السجلات والتحكم";
-                btn.className = "bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
-                loadHistory();
-            } else {
-                content.classList.add('hidden');
-                searchContainer.classList.add('hidden');
-                btn.innerText = "إظهار السجلات والتحكم";
-                btn.className = "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
+        if (!isDashboardVisible) {
+            // طلب كلمة المرور الخاصة بالأدمن
+            const adminPassword = prompt("الرجاء إدخال كلمة مرور المسؤول (Admin Password):");
+            
+            // يمكنك تغيير كلمة المرور هنا إلى ما تريده (مثلاً: admin123)
+            if (adminPassword !== "admin123") {
+                alert("كلمة المرور غير صحيحة! الوصول محظور.");
+                return;
             }
         }
+
+        isDashboardVisible = !isDashboardVisible;
+
+        if (isDashboardVisible) {
+            content.classList.remove('hidden');
+            searchContainer.classList.remove('hidden');
+            btn.innerText = "🔒 إخفاء لوحة التحكم";
+            btn.className = "bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
+            loadHistory(); // تحميل البيانات فقط عند نجاح تسجيل دخول الأدمن
+        } else {
+            content.classList.add('hidden');
+            searchContainer.classList.add('hidden');
+            btn.innerText = "لوحة التحكم وسجل التهديدات (للمسؤول)";
+            btn.className = "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
+        }
+    }
     </script>
 </body>
 </html>
