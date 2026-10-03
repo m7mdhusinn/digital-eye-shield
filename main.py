@@ -270,6 +270,12 @@ def get_scan_history(search: str = None, db: Session = Depends(get_db)):
     logs = query.order_by(models.ScanLog.created_at.desc()).limit(50).all()
     return logs
 
+from fastapi.responses import HTMLResponse
+
+@app.get("/", response_class=HTMLResponse)
+def read_frontend():
+    with open("index.html", "r", encoding="utf-8") as f:
+        return f.read()
 '''
 import os
 import json
