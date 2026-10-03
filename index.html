@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Shield AI | نظام مكافحة الجرائم المعلوماتية</title>
+    <!-- Tailwind CSS للتصميم الخرافي السريع -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #090d16;
+            color: #e2e8f0;
+        }
+        .glow-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        .glow-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px -5px rgba(56, 189, 248, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+<!-- Header / Navbar -->
+    <header class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center w-full border-b border-slate-800/60">
+        <!-- الشعار الجديد: معا لمكافحة النصب والاحتيال -->
+        <div class="flex items-center space-x-3 space-x-reverse">
+            <div class="p-2.5 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 text-cyan-400 rounded-xl text-lg flex items-center justify-center shadow-lg shadow-cyan-500/10">
+                🛡️🤝
+            </div>
+            <div>
+                <h1 class="text-sm font-bold text-slate-100 tracking-wide">معا لمكافحة النصب والاحتيال</h1>
+                <p class="text-[10px] text-slate-400">تحالف رقمي أمني لحماية المجتمع</p>
+            </div>
+        </div>
+
+        <!-- اسم البرنامج مع أيقونة العين الرقمية وحالة النظام -->
+      
+        <div class="flex items-center space-x-3 space-x-reverse text-sm md:text-base text-slate-200 font-mono bg-slate-900/80 border border-slate-700/80 px-4 py-2.5 rounded-2xl shadow-xl shadow-cyan-500/5">
+            <span class="text-cyan-400 text-lg md:text-xl">👁‍🗨️</span>
+            <span class="font-bold tracking-wider text-cyan-300">العين الرقمية</span>
+           
+        </div>
+    </header>
+
+<!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-6 py-10 w-full grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- 1. فحص الروابط -->
+        <div class="glow-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+            <div>
+                <div class="flex items-center space-x-3 space-x-reverse mb-4">
+                    <div class="p-3 bg-blue-500/10 text-blue-400 rounded-xl text-xl">🔗</div>
+                    <div>
+                        <h2 class="text-md font-bold text-slate-100">فحص الروابط</h2>
+                        <p class="text-[11px] text-slate-400">كشف التصيد الاحتيالي</p>
+                    </div>
+                </div>
+                <div class="space-y-3 mt-4">
+                    <input type="url" id="urlInput" placeholder="https://example.com/login" class="w-full bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-500">
+                    <button onclick="scanUrl()" id="urlBtn" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs shadow-lg shadow-cyan-500/20">فحص الرابط</button>
+                </div>
+            </div>
+            <div id="urlResult" class="mt-4 hidden p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] space-y-2"></div>
+        </div>
+
+        <!-- 2. فحص المستندات -->
+        <div class="glow-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+            <div>
+                <div class="flex items-center space-x-3 space-x-reverse mb-4">
+                    <div class="p-3 bg-cyan-500/10 text-cyan-400 rounded-xl text-xl">📄</div>
+                    <div>
+                        <h2 class="text-md font-bold text-slate-100">فحص المستندات</h2>
+                        <p class="text-[11px] text-slate-400">تحليل الإيصالات والتزوير</p>
+                    </div>
+                </div>
+                <div class="space-y-3 mt-4">
+                    <input type="file" id="fileInput" class="w-full bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2 text-[11px] text-slate-300 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-cyan-500/10 file:text-cyan-400">
+                    <button onclick="scanDocument()" id="docBtn" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-slate-950 font-bold py-2.5 rounded-xl text-xs shadow-lg shadow-blue-500/20">فحص المستند</button>
+                </div>
+            </div>
+            <div id="docResult" class="mt-4 hidden p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] space-y-2"></div>
+        </div>
+
+        <!-- 3. فحص أرقام واتساب والمعرفات الجديد -->
+        <div class="glow-card rounded-2xl p-6 flex flex-col justify-between transition-all duration-300">
+            <div>
+                <div class="flex items-center space-x-3 space-x-reverse mb-4">
+                    <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl text-xl">💬</div>
+                    <div>
+                        <h2 class="text-md font-bold text-slate-100">فحص الأرقام والمعرفات</h2>
+                        <p class="text-[11px] text-slate-400">كشف احتيال الواتساب والاتصالات</p>
+                    </div>
+                </div>
+                <div class="space-y-3 mt-4">
+                    <input type="text" id="contactInput" placeholder="+9665xxxxxxxx أو @username" class="w-full bg-slate-900/80 border border-slate-700/60 rounded-xl px-3 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-emerald-500">
+                    <button onclick="scanContact()" id="contactBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-500/20">فحص الرقم/المعرف</button>
+                </div>
+            </div>
+            <div id="contactResult" class="mt-4 hidden p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] space-y-2"></div>
+        </div>
+
+    </main>
+<!-- Dashboard & History Section -->
+    <section class="max-w-7xl mx-auto px-6 pb-16 w-full">
+        <div class="glow-card rounded-2xl p-6 border border-slate-800/80 bg-slate-950/60 backdrop-blur-xl">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-100">لوحة التحكم وسجل التهديدات</h2>
+                    <p class="text-xs text-slate-400">إدارة ومراجعة كافة عمليات الفحص والبلاغات المحفوظة محلياً</p>
+                </div>
+                <div class="flex items-center space-x-3 space-x-reverse w-full md:w-auto">
+                    <!-- شريط البحث (مخفي افتراضياً) -->
+                    <div id="searchContainer" class="hidden w-full md:w-64">
+                        <input type="text" id="searchInput" oninput="loadHistory()" placeholder="بحث في السجلات..." class="w-full bg-slate-900/80 border border-slate-700/60 rel-rounded px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-cyan-500 rounded-xl">
+                    </div>
+                    <!-- زر إظهار / إاخفاء الكل -->
+                    <button onclick="toggleDashboard()" id="toggleDashboardBtn" class="bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap">
+                        إظهار السجلات والتحكم
+                    </button>
+                </div>
+            </div>
+
+            <!-- حاوية الجدول (مخفية بالكامل عند دخول الموقع) -->
+            <div id="dashboardContent" class="hidden transition-all duration-300 mt-4">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right text-xs text-slate-300">
+                        <thead class="bg-slate-900/80 text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="p-3 rounded-r-xl">النوع</th>
+                                <th class="p-3">القيمة (الرابط / المستند / المعرف)</th>
+                                <th class="p-3">نسبة الخطورة</th>
+                                <th class="p-3">الحالة</th>
+                                <th class="p-3 rounded-l-xl">التاريخ والوقت</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody" class="divide-y divide-slate-800/50">
+                            <!-- سيتم تعبئتها ديناميكياً -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950/40 py-4 text-center text-xs text-slate-500">
+        <div class="flex items-center justify-center space-x-2 space-x-reverse mb-1">
+            <span class="text-cyan-400">👁‍🗨️</span>
+            <span class="font-bold text-slate-400">العين الرقمية</span>
+            <span class="text-slate-600">|</span>
+            <span class="font-mono text-slate-400"> &copy; 2026 - جميع الحقوق محفوظة</span>
+        </div>
+        
+    </footer>
+
+    <!-- JavaScript للربط المباشر مع الـ Backend -->
+    <script>
+        const API_BASE = "http://127.0.0.1:8000/api/v1";
+
+        async function scanUrl() {
+            const url = document.getElementById('urlInput').value.trim();
+            const resultDiv = document.getElementById('urlResult');
+            const btn = document.getElementById('urlBtn');
+
+            if (!url) {
+                alert('الرجاء إدخال رابط صالح أولاً.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "جاري الفحص والتحليل المحلي...";
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = `<p class="text-cyan-400 animate-pulse">جاري فحص الرابط واستدعاء نموذج Llama 3...</p>`;
+
+            try {
+                const response = await fetch(`${API_BASE}/scan-url`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url })
+                });
+                const data = await response.json();
+
+                let badgeColor = data.status === 'Safe' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : (data.status === 'Suspicious' ? 'text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-rose-400 bg-rose-500/10 border-rose-500/20');
+
+                resultDiv.innerHTML = `
+                    <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                        <span class="font-bold text-slate-200">نتيجة الفحص (معرف: ${data.scan_id})</span>
+                        <span class="px-2.5 py-1 rounded-md border text-[10px] font-bold ${badgeColor}">${data.status} (نسبة الخطورة: ${data.risk_score}%)</span>
+                    </div>
+                    <div><span class="text-slate-400 font-semibold">ملاحظات الفحص:</span> <ul class="list-disc list-inside text-slate-300 mt-1">${data.analysis_notes.map(n => `<li>${n}</li>`).join('')}</ul></div>
+                    <div class="pt-2 border-t border-slate-800"><span class="text-cyan-400 font-semibold">رأي خبير الأمن السيبراني (AI):</span> <p class="text-slate-300 mt-1 leading-relaxed">${data.ai_expert_opinion}</p></div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-rose-400">خطأ في الاتصال بالخادم الخلفي: ${error}</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "فحص الرابط أمنياً";
+            }
+        }
+
+        async function scanDocument() {
+            const fileInput = document.getElementById('fileInput');
+            const resultDiv = document.getElementById('docResult');
+            const btn = document.getElementById('docBtn');
+
+            if (fileInput.files.length === 0) {
+                alert('الرجاء اختيار ملف أو مستند أولاً.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            btn.disabled = true;
+            btn.innerText = "جاري رفع وتحليل المستند...";
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = `<p class="text-cyan-400 animate-pulse">جاري فحص المستند وقراءته عبر الذكاء الاصطناعي المحلي...</p>`;
+
+            try {
+                const response = await fetch(`${API_BASE}/scan-document`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                let badgeColor = data.status === 'Safe' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : (data.status === 'Suspicious' ? 'text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-rose-400 bg-rose-500/10 border-rose-500/20');
+
+                resultDiv.innerHTML = `
+                    <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                        <span class="font-bold text-slate-200">الملف: ${data.filename}</span>
+                        <span class="px-2.5 py-1 rounded-md border text-[10px] font-bold ${badgeColor}">${data.status} (نسبة الخطورة: ${data.risk_score}%)</span>
+                    </div>
+                    <div><span class="text-slate-400 font-semibold">مؤشرات المستند:</span> <ul class="list-disc list-inside text-slate-300 mt-1">${data.analysis_notes.map(n => `<li>${n}</li>`).join('')}</ul></div>
+                    <div class="pt-2 border-t border-slate-800"><span class="text-cyan-400 font-semibold">تحقيق المراجع المالي (AI):</span> <p class="text-slate-300 mt-1 leading-relaxed">${data.ai_document_review}</p></div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-rose-400">خطأ في الاتصال بالخادم الخلفي: ${error}</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "تحليل المستند بالذكاء الاصطناعي";
+            }
+        }
+        async function scanContact() {
+            const contact = document.getElementById('contactInput').value.trim();
+            const resultDiv = document.getElementById('contactResult');
+            const btn = document.getElementById('contactBtn');
+
+            if (!contact) {
+                alert('الرجاء إدخال رقم الجوال أو المعرف أولاً.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "جاري البحث في قاعدة البلاغات...";
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = `<p class="text-emerald-400 animate-pulse">جاري فحص الرقم محلياً...</p>`;
+
+            try {
+                const response = await fetch(`${API_BASE}/scan-contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contact: contact })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'حدث خطأ غير متوقع في الخادم.');
+                }
+
+                let badgeColor = data.status === 'Safe' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : (data.status === 'Suspicious' ? 'text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-rose-400 bg-rose-500/10 border-rose-500/20');
+
+                let notesHtml = '';
+                if (data.analysis_notes && Array.isArray(data.analysis_notes)) {
+                    notesHtml = data.analysis_notes.map(n => `<li>${n}</li>`).join('');
+                } else {
+                    notesHtml = `<li>${data.analysis_notes || 'لا توجد ملاحظات مسجلة.'}</li>`;
+                }
+
+               resultDiv.innerHTML = `
+                    <div class="flex justify-between items-center pb-2 border-b border-slate-800">
+                        <span class="font-bold text-slate-200">المرجع: ${data.contact}</span>
+                        <span class="px-2 py-0.5 rounded-md border text-[10px] font-bold ${badgeColor}">${data.status} (${data.risk_score}%)</span>
+                    </div>
+                    <div><span class="text-slate-400 font-semibold">سجل البلاغات:</span> <ul class="list-disc list-inside text-slate-300 mt-1">${notesHtml}</ul></div>
+                    <div class="pt-2 border-t border-slate-800"><span class="text-emerald-400 font-semibold">تحليل المحقق (AI):</span> <p class="text-slate-300 mt-1">${data.ai_contact_review || 'لا توجد تعليقات إضافية.'}</p></div>
+                    <div class="pt-2 mt-2 border-t border-slate-800 flex justify-end">
+                        <button onclick="blockContactNumber('${data.contact}')" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/40 px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all duration-200">
+                            🚨 حظر وإبلاغ مؤكد
+                        </button>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-rose-400 font-semibold">خطأ: ${error.message}</p>`;
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "فحص الرقم/المعرف";
+            }
+        }
+        async function blockContactNumber(contactVal) {
+            if (!confirm(`هل أنت متأكد من رغبتك في حظر وإدراج المعرف (${contactVal}) ضمن قائمة الاحتيال المؤكد؟`)) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/block-contact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contact: contactVal })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    scanContact(); // إعادة الفحص لتحديث الحالة إلى خطير جداً
+                } else {
+                    alert('فشل تنفيذ عملية الحظر.');
+                }
+            } catch (error) {
+                alert(`خطأ في الاتصال: ${error}`);
+            }
+        }
+        // دالة جلب وعرض السجلات مع دعم البحث الفوري
+        async function loadHistory() {
+            const searchTerm = document.getElementById('searchInput').value.trim();
+            const tbody = document.getElementById('historyTableBody');
+            
+            let url = `${API_BASE}/scan-history`;
+            if (searchTerm) {
+                url += `?search=${encodeURIComponent(searchTerm)}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                const logs = await response.json();
+
+                if (logs.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-center p-4 text-slate-500">لا توجد سجلات مطابقة.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = logs.map(log => {
+                    let badgeColor = log.status === 'Safe' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : (log.status === 'Suspicious' ? 'text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-rose-400 bg-rose-500/10 border-rose-500/20');
+                    let typeLabel = log.target_type === 'url' ? '🔗 رابط' : (log.target_type === 'document' ? '📄 مستند' : '💬 معرف/رقم');
+                    let formattedDate = new Date(log.created_at).toLocaleString('en-US');
+
+                    return `
+                        <tr class="hover:bg-slate-900/40 transition-colors">
+                            <td class="p-3 font-semibold text-slate-200">${typeLabel}</td>
+                            <td class="p-3 font-mono text-cyan-400 truncate max-w-xs" title="${log.target_value}">${log.target_value}</td>
+                            <td class="p-3">${log.risk_score}%</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded-md border text-[10px] font-bold ${badgeColor}">${log.status}</span></td>
+                            <td class="p-3 text-slate-400">${formattedDate}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('خطأ في جلب السجلات:', error);
+            }
+        }
+
+        // استدعاء دالة التحميل تلقائياً عند فتح الصفحة
+        window.onload = function() {
+            loadHistory();
+        };
+        let isDashboardVisible = false;
+
+        function toggleDashboard() {
+            const content = document.getElementById('dashboardContent');
+            const searchContainer = document.getElementById('searchContainer');
+            const btn = document.getElementById('toggleDashboardBtn');
+
+            isDashboardVisible = !isDashboardVisible;
+
+            if (isDashboardVisible) {
+                content.classList.remove('hidden');
+                searchContainer.classList.remove('hidden');
+                btn.innerText = "🔒 إخفاء السجلات والتحكم";
+                btn.className = "bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
+                loadHistory(); // تحميل البيانات فور إظهار اللوحة
+            } else {
+                content.classList.add('hidden');
+                searchContainer.classList.add('hidden');
+                btn.innerText = "إظهار السجلات والتحكم";
+                btn.className = "bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap";
+            }
+        }
+    </script>
+</body>
+</html>
